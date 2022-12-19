@@ -9,9 +9,8 @@ public interface GroupService {
     List<Group> getAll();
 
     Group findById(Long id);
-    Group findByUsername(String username);
 
-    Group register(Group group);
+    Group findByUsername(String username);
 
     Group save(GroupDto dto);
 }

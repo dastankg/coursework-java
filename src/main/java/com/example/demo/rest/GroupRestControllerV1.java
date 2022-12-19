@@ -22,9 +22,9 @@ public class GroupRestControllerV1 {
     }
 
     @GetMapping(value = "{id}")
-    public ResponseEntity<GroupDto> getGroupById(@PathVariable(name = "id") Long id){
+    public ResponseEntity<GroupDto> getGroupById(@PathVariable(name = "id") Long id) {
         Group group = groupService.findById(id);
-        if (group == null){
+        if (group == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         GroupDto result = GroupDto.fromGroup(group);

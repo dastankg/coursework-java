@@ -20,17 +20,6 @@ public class UserDto {
     private String lastName;
     private String email;
 
-    public User toUser(){
-        User user = new User();
-        user.setId(id);
-        user.setUsername(username);
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        user.setEmail(email);
-
-        return user;
-    }
-
     public static UserDto fromUser(User user) {
         UserDto userDto = new UserDto();
         userDto.setId(user.getId());
@@ -40,5 +29,16 @@ public class UserDto {
         userDto.setEmail(user.getEmail());
 
         return userDto;
+    }
+
+    public User toUser() {
+        User user = new User();
+        user.setId(id);
+        user.setUsername(username);
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setEmail(email);
+
+        return user;
     }
 }
