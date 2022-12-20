@@ -3,6 +3,18 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
+    <changeSet id="0.0.1" author="dastan">
+        <createTable tableName="group_students">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+
+        </createTable>
+    </changeSet>
 
     <changeSet id="1.0.0" author="dastan">
         <createTable tableName="users">
@@ -13,7 +25,6 @@
             <column name="username" type="VARCHAR(100)">
                 <constraints nullable="false" unique="true"/>
             </column>
-
             <column name="email" type="VARCHAR(255)">
                 <constraints nullable="false" unique="true"/>
             </column>
@@ -25,7 +36,6 @@
             <column name="last_name" type="VARCHAR(100)">
                 <constraints nullable="false"/>
             </column>
-
             <column name="password" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
@@ -41,8 +51,17 @@
             <column name="status" type="VARCHAR(25)" defaultValue="ACTIVE">
                 <constraints nullable="false"/>
             </column>
+            <column name="groupID" type="BIGINT">
+                <constraints nullable="false" unique="true"/>
+            </column>
 
         </createTable>
+        <addForeignKeyConstraint baseColumnNames="groupID"
+                                 baseTableName="users"
+                                 constraintName="group_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="group_students"/>
+
     </changeSet>
 
     <changeSet id="1.0.1" author="dastan">
@@ -108,30 +127,9 @@
             <column name="name" value="ROLE_ADMIN"/>
         </insert>
     </changeSet>
+
+
     <changeSet id="1.0.6" author="dastan">
-        <createTable tableName="group_students">
-            <column name="id" type="BIGINT" autoIncrement="true">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-
-            <column name="name" type="VARCHAR(100)">
-                <constraints nullable="false" unique="true"/>
-            </column>
-            <column name="created" type="TIMESTAMP" defaultValue="CURRENT_TIMESTAMP()">
-                <constraints nullable="false"/>
-            </column>
-
-            <column name="updated" type="TIMESTAMP" defaultValue="CURRENT_TIMESTAMP()">
-                <constraints nullable="false"/>
-            </column>
-
-            <column name="status" type="VARCHAR(25)" defaultValue="ACTIVE">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-
-    <changeSet id="1.0.7" author="dastan">
         <createTable tableName="student">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
@@ -156,14 +154,14 @@
             <column name="status" type="VARCHAR(25)" defaultValue="ACTIVE">
                 <constraints nullable="false"/>
             </column>
-            <column name="group_id" type="BIGINT">
+            <column name="fk_group_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
 
         </createTable>
-        <addForeignKeyConstraint baseColumnNames="group_id"
+        <addForeignKeyConstraint baseColumnNames="fk_group_id"
                                  baseTableName="student"
-                                 constraintName="group_id"
+                                 constraintName="fk_group_id"
                                  referencedColumnNames="id"
                                  referencedTableName="group_students"/>
     </changeSet>

@@ -11,9 +11,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "groupStudents")
 @Data
-public class Group extends BaseEntity {
+public class Group {
     @Id
-    @Column(name = "group_id")
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "name", nullable = false)

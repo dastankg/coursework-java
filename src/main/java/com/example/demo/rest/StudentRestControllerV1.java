@@ -2,6 +2,7 @@ package com.example.demo.rest;
 
 import com.example.demo.dto.StudentDto;
 import com.example.demo.model.Student;
+import com.example.demo.repository.StudentRepository;
 import com.example.demo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,10 +18,13 @@ import java.util.List;
 @RequestMapping("/api/v1/students/")
 public class StudentRestControllerV1 {
     private final StudentService studentService;
+    private final StudentRepository studentRepository;
 
     @Autowired
-    public StudentRestControllerV1(StudentService studentService) {
+    public StudentRestControllerV1(StudentService studentService,
+                                   StudentRepository studentRepository) {
         this.studentService = studentService;
+        this.studentRepository = studentRepository;
     }
 
     @GetMapping(value = "{id}")
@@ -36,5 +40,12 @@ public class StudentRestControllerV1 {
     @GetMapping(value = "/students/")
     public ResponseEntity<List<Student>> getAll() {
         return ResponseEntity.ok(studentService.getAll());
+    }
+
+    @GetMapping(value = "/group/{id}")
+    public ResponseEntity<List<Student>> findByGroupId(@PathVariable(name = "id") Long id){
+        List<Student> students = studentService.findByGroupId(id);
+        return new ResponseEntity<>(students, HttpStatus.OK);
+
     }
 }

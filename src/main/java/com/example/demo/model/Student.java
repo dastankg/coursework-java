@@ -22,7 +22,7 @@ public class Student extends BaseEntity {
     private String phone;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "group_id")
+    @JoinColumn(name = "fk_group_id")
     private Group group;
 
 

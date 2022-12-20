@@ -27,8 +27,7 @@ public class UserRestControllerV1 {
     private final UserService userService;
 
     @Autowired
-    public UserRestControllerV1(UserService userService,
-                                GroupRepository groupRepository) {
+    public UserRestControllerV1(UserService userService) {
         this.userService = userService;
     }
 

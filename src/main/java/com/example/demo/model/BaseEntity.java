@@ -15,12 +15,13 @@ public class BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @CreatedDate
-    @Column(name = "created")
+    @Column(name = "created", nullable = true)
     private Date created;
     @LastModifiedDate
-    @Column(name = "updated")
+    @Column(name = "updated", nullable = true)
     private Date updated;
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private Status status;
+
 }

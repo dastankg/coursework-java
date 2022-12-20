@@ -1,5 +1,6 @@
 package com.example.demo.security.jwt;
 
+import com.example.demo.model.Group;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,6 +17,7 @@ public class JwtUser implements UserDetails {
     private final String lastName;
     private final String password;
     private final String email;
+    private final Group group;
     private final boolean enabled;
     private final Date lastPasswordResetDate;
     private final Collection<? extends GrantedAuthority> authorities;
@@ -28,7 +30,8 @@ public class JwtUser implements UserDetails {
             String email,
             String password, Collection<? extends GrantedAuthority> authorities,
             boolean enabled,
-            Date lastPasswordResetDate
+            Date lastPasswordResetDate,
+            Group group
     ) {
         this.id = id;
         this.username = username;
@@ -39,6 +42,8 @@ public class JwtUser implements UserDetails {
         this.authorities = authorities;
         this.enabled = enabled;
         this.lastPasswordResetDate = lastPasswordResetDate;
+        this.group = group;
+
     }
 
     @JsonIgnore
@@ -79,6 +84,10 @@ public class JwtUser implements UserDetails {
 
     public String getEmail() {
         return email;
+    }
+
+    public Group getGroup() {
+        return group;
     }
 
     @JsonIgnore

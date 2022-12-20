@@ -1,19 +1,13 @@
 package com.example.demo.service.Impl;
 
-import com.example.demo.dto.GroupDto;
 import com.example.demo.mapper.GroupMapper;
 import com.example.demo.model.Group;
-import com.example.demo.model.Role;
-import com.example.demo.model.Status;
-import com.example.demo.model.User;
 import com.example.demo.repository.GroupRepository;
-import com.example.demo.repository.UserRepository;
 import com.example.demo.service.GroupService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -58,7 +52,7 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public Group save(GroupDto dto) {
+    public Group save(Group dto) {
         Group group = GroupMapper.DtoToEntity(dto);
         groupRepository.save(group);
         return GroupMapper.EntityToDto(group).toGroup();

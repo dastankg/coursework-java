@@ -36,9 +36,9 @@ public class GroupRestControllerV1 {
         return ResponseEntity.ok(groupService.getAll());
     }
 
-    @PostMapping(value = "/createGroup")
+    @PostMapping(value = "/create/")
     ResponseEntity<Group> createGroup(@RequestBody Group dto) {
-        return ResponseEntity.ok().body(groupService.save(GroupDto.fromGroup(dto)));
+        return ResponseEntity.ok().body(groupService.save(dto));
     }
 
 

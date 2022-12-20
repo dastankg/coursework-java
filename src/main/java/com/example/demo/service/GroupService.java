@@ -1,6 +1,5 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.GroupDto;
 import com.example.demo.model.Group;
 
 import java.util.List;
@@ -12,5 +11,5 @@ public interface GroupService {
 
     Group findByUsername(String username);
 
-    Group save(GroupDto dto);
+    Group save(Group dto);
 }

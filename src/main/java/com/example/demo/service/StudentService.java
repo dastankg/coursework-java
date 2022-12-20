@@ -8,6 +8,7 @@ public interface StudentService {
     Student register(Student student);
 
     List<Student> getAll();
+    List<Student> findByGroupId(Long id);
 
     Student findByUsername(String username);
 

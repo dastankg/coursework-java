@@ -41,4 +41,5 @@ public class AdminRestControllerV1 {
 
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
+
 }

@@ -33,6 +33,11 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public List<Student> findByGroupId(Long id) {
+        return studentRepository.findByGroupId(id);
+    }
+
+    @Override
     public Student findByUsername(String username) {
         return null;
     }
