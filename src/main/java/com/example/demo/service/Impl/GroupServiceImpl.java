@@ -64,4 +64,13 @@ public class GroupServiceImpl implements GroupService {
         newGroup.setId(group.getId());
         return GroupMapper.EntityToDto(groupRepository.save(newGroup)).toGroup();
     }
+
+    @Override
+    public void delete(Long id) {
+
+        Group doctor = groupRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("No Doctor with ID : " + id));
+        groupRepository.delete(doctor);
+
+    }
 }

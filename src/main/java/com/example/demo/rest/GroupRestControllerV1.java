@@ -55,4 +55,10 @@ public class GroupRestControllerV1 {
     ResponseEntity<Group> updateGroup(@PathVariable("id") Long id, @RequestBody GroupDto dto) {
         return ResponseEntity.ok().body(groupService.update(id, dto));
     }
+
+    @DeleteMapping(value="/deleteGroup/{id}")
+    ResponseEntity<Void> deleteDoctor( @PathVariable("id") Long id) {
+        groupService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }

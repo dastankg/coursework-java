@@ -15,4 +15,6 @@ public interface GroupService {
     Group save(Group dto);
 
     Group update(Long id, GroupDto group);
+
+    void delete(Long id);
 }
