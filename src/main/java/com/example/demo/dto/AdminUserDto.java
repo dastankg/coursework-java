@@ -7,12 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 
-/**
- * DTO class for user requests by ROLE_ADMIN
- *
- * @author Eugene Suleimanov
- * @version 1.0
- */
+
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
