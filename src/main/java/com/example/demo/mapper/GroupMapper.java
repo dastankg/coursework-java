@@ -4,7 +4,8 @@ import com.example.demo.dto.GroupDto;
 import com.example.demo.model.Group;
 
 public class GroupMapper {
-    public static Group DtoToEntity(Group dto) {
+
+    public static Group DtoToEntity(GroupDto dto) {
         Group group = new Group();
         group.setId(dto.getId());
         group.setName(dto.getName());

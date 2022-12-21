@@ -1,16 +1,14 @@
 package com.example.demo.rest;
 
 import com.example.demo.dto.StudentDto;
+import com.example.demo.model.Group;
 import com.example.demo.model.Student;
 import com.example.demo.repository.StudentRepository;
 import com.example.demo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,13 +16,10 @@ import java.util.List;
 @RequestMapping("/api/v1/students/")
 public class StudentRestControllerV1 {
     private final StudentService studentService;
-    private final StudentRepository studentRepository;
 
     @Autowired
-    public StudentRestControllerV1(StudentService studentService,
-                                   StudentRepository studentRepository) {
+    public StudentRestControllerV1(StudentService studentService) {
         this.studentService = studentService;
-        this.studentRepository = studentRepository;
     }
 
     @GetMapping(value = "{id}")
@@ -47,5 +42,10 @@ public class StudentRestControllerV1 {
         List<Student> students = studentService.findByGroupId(id);
         return new ResponseEntity<>(students, HttpStatus.OK);
 
+    }
+
+    @PostMapping(value = "/create/")
+    ResponseEntity<Student> createGroup(@RequestBody Student dto) {
+        return ResponseEntity.ok().body(studentService.save(dto));
     }
 }

@@ -13,6 +13,6 @@ public interface StudentService {
     Student findByUsername(String username);
 
     Student findById(Long id);
-
+    Student save(Student dto);
     void delete(Long id);
 }
