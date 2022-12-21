@@ -21,11 +21,6 @@ public class ProtocolServiceImpl implements ProtocolService {
     }
 
     @Override
-    public Protocol register(Protocol protocol) {
-        return null;
-    }
-
-    @Override
     public List<Protocol> getAll() {
         List<Protocol> groups = protocolRepository.findAll();
         log.info("IN getAll - {} group found", groups.size());

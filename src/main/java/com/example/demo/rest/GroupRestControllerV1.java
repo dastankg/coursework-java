@@ -41,5 +41,18 @@ public class GroupRestControllerV1 {
         return ResponseEntity.ok().body(groupService.save(dto));
     }
 
+    @GetMapping(value = "/name/{name}")
+    public ResponseEntity<GroupDto> getByUsername(@PathVariable(name = "name") String name){
+        Group group = groupService.findByName(name);
+        if (group == null){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        GroupDto result = GroupDto.fromGroup(group);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
 
+    @PutMapping(value="/newGroup/{id}")
+    ResponseEntity<Group> updateGroup(@PathVariable("id") Long id, @RequestBody GroupDto dto) {
+        return ResponseEntity.ok().body(groupService.update(id, dto));
+    }
 }

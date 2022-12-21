@@ -1,5 +1,6 @@
 package com.example.demo.service.Impl;
 
+import com.example.demo.Exception.NotFoundException;
 import com.example.demo.dto.GroupDto;
 import com.example.demo.mapper.GroupMapper;
 import com.example.demo.model.Group;
@@ -32,21 +33,18 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public Group findById(Long id) {
-
         Group result = groupRepository.findById(id).orElse(null);
-
         if (result == null) {
             log.warn("IN findById - no group r found by id: {}", id);
             return null;
         }
-
         log.info("IN findById - group: {} found by id: {}", result, id);
         return result;
 
     }
 
     @Override
-    public Group findByUsername(String username) {
+    public Group findByName(String username) {
         Group result = groupRepository.findByName(username);
         log.info("IN findByName - group: {} found by name {}", result, username);
         return result;
@@ -59,5 +57,11 @@ public class GroupServiceImpl implements GroupService {
         return GroupMapper.EntityToDto(group).toGroup();
     }
 
-
+    @Override
+    public Group update(Long id, GroupDto dto) {
+        Group group = groupRepository.findById(id).orElseThrow(() -> new NotFoundException("No Doctor with ID : " + id));
+        Group newGroup = GroupMapper.DtoToEntity(dto);
+        newGroup.setId(group.getId());
+        return GroupMapper.EntityToDto(groupRepository.save(newGroup)).toGroup();
+    }
 }
