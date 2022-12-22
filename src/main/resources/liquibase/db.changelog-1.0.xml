@@ -154,6 +154,32 @@
                                  referencedTableName="group_students"/>
     </changeSet>
     <changeSet id="1.0.7" author="dastan">
+        <createTable tableName="meeting">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="TIMESTAMP" defaultValue="CURRENT_TIMESTAMP()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address" type="VARCHAR(1000)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="fk_group" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="fk_group"
+                                 baseTableName="meeting"
+                                 constraintName="fk_group"
+                                 referencedColumnNames="id"
+                                 referencedTableName="group_students"/>
+    </changeSet>
+    <changeSet id="1.0.8" author="dastan">
         <createTable tableName="protocol">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
@@ -168,16 +194,42 @@
                 <constraints nullable="false"/>
             </column>
 
-            <column name="fk_groupid" type="BIGINT">
+            <column name="fk_meeting" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
 
         </createTable>
-        <addForeignKeyConstraint baseColumnNames="fk_groupid"
+        <addForeignKeyConstraint baseColumnNames="fk_meeting"
                                  baseTableName="protocol"
-                                 constraintName="fkGroupid"
+                                 constraintName="fk_meeting"
                                  referencedColumnNames="id"
-                                 referencedTableName="group_students"/>
+                                 referencedTableName="meeting"/>
+    </changeSet>
+
+    <changeSet id="1.0.9" author="dastan">
+        <createTable tableName="attendance">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="date" defaultValue="2022-12-23">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(1000)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="protocol_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="protocol_id"
+                                 baseTableName="attendance"
+                                 constraintName="protocol_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="protocol"/>
     </changeSet>
 
 </databaseChangeLog>

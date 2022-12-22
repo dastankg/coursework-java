@@ -1,6 +1,8 @@
 package com.example.demo.dto;
 
+import com.example.demo.model.Attendance;
 import com.example.demo.model.Group;
+import com.example.demo.model.Meeting;
 import com.example.demo.model.Protocol;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
@@ -15,7 +17,7 @@ public class ProtocolDto {
     private String agendas;
     private String hearing;
     private String decided;
-    private Group group;
+    private Meeting meeting;
 
     public static ProtocolDto fromProtocol(Protocol protocol) {
         ProtocolDto protocolDto = new ProtocolDto();
@@ -23,7 +25,7 @@ public class ProtocolDto {
         protocolDto.setAgendas(protocol.getAgendas());
         protocolDto.setHearing(protocol.getHearing());
         protocolDto.setDecided(protocol.getDecided());
-        protocolDto.setGroup(protocol.getGroup());
+        protocolDto.setMeeting(protocol.getMeeting());
         return protocolDto;
     }
     public Protocol toProtocol(){
@@ -32,7 +34,7 @@ public class ProtocolDto {
         protocol.setAgendas(agendas);
         protocol.setHearing(hearing);
         protocol.setDecided(decided);
-        protocol.setGroup(group);
+        protocol.setMeeting(meeting);
         return protocol;
     }
 

@@ -20,6 +20,7 @@ public class Protocol {
     @Column(name = "decided", nullable = false)
     private String decided;
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "fkGroupid")
-    private Group group;
+    @JoinColumn(name = "fkMeeting")
+    private Meeting meeting;
+
 }

@@ -10,7 +10,7 @@ public class ProtocolMapper {
         protocol.setAgendas(dto.getAgendas());
         protocol.setHearing(dto.getHearing());
         protocol.setDecided(dto.getDecided());
-        protocol.setGroup(dto.getGroup());
+        protocol.setMeeting(dto.getMeeting());
         return protocol;
     }
 
@@ -20,7 +20,7 @@ public class ProtocolMapper {
         dto.setAgendas(protocol.getAgendas());
         dto.setHearing(protocol.getHearing());
         dto.setDecided(protocol.getDecided());
-        dto.setGroup(protocol.getGroup());
+        dto.setMeeting(protocol.getMeeting());
         return dto;
     }
 }

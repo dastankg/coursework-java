@@ -6,26 +6,20 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "meeting")
+@Table(name = "attendance")
 @Data
-public class Meeting {
-
+public class Attendance {
     @Id
     @Column(name = "id")
     private Long id;
-
     @Column(name = "name")
     private String name;
-
+    @Column(name = "status")
+    private String status;
     @Column(name = "date")
     private Date date;
 
-    @Column(name = "address")
-    private String address;
-
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "fk_group")
-    private Group group;
-
-
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "protocol_id")
+    private Protocol protocol;
 }
