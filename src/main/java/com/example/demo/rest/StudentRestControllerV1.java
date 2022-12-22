@@ -1,9 +1,7 @@
 package com.example.demo.rest;
 
 import com.example.demo.dto.StudentDto;
-import com.example.demo.model.Group;
 import com.example.demo.model.Student;
-import com.example.demo.repository.StudentRepository;
 import com.example.demo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,7 +26,7 @@ public class StudentRestControllerV1 {
         if (student == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        StudentDto result = StudentDto.fromGroup(student);
+        StudentDto result = StudentDto.fromStudent(student);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
@@ -47,5 +45,26 @@ public class StudentRestControllerV1 {
     @PostMapping(value = "/create/")
     ResponseEntity<Student> createGroup(@RequestBody Student dto) {
         return ResponseEntity.ok().body(studentService.save(dto));
+    }
+
+    @GetMapping(value = "/name/{name}")
+    public ResponseEntity<StudentDto> getByUsername(@PathVariable(name = "name") String name){
+        Student student = studentService.findByUsername(name);
+        if (student == null){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        StudentDto result = StudentDto.fromStudent(student);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @PutMapping(value="/newStudent/{id}")
+    ResponseEntity<Student> updateStudent(@PathVariable("id") Long id, @RequestBody StudentDto dto) {
+        return ResponseEntity.ok().body(studentService.update(id, dto));
+    }
+
+    @DeleteMapping(value="/deleteStudent/{id}")
+    ResponseEntity<Void> deleteStudent( @PathVariable("id") Long id) {
+        studentService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

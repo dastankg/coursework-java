@@ -18,7 +18,7 @@ public class Student {
     @Column(name = "phone")
     private String phone;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_group_id")
     private Group group;
 

@@ -13,7 +13,7 @@ public class StudentDto {
     private String phone;
     private Group group;
 
-    public static StudentDto fromGroup(Student student) {
+    public static StudentDto fromStudent(Student student) {
         StudentDto studentDto = new StudentDto();
         studentDto.setId(student.getId());
         studentDto.setName(student.getName());
