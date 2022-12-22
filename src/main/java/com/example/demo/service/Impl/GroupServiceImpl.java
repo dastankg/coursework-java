@@ -59,7 +59,7 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public Group update(Long id, GroupDto dto) {
-        Group group = groupRepository.findById(id).orElseThrow(() -> new NotFoundException("No Doctor with ID : " + id));
+        Group group = groupRepository.findById(id).orElseThrow(() -> new NotFoundException("No Student with ID : " + id));
         Group newGroup = GroupMapper.DtoToEntity(dto);
         newGroup.setId(group.getId());
         return GroupMapper.EntityToDto(groupRepository.save(newGroup)).toGroup();
@@ -69,7 +69,7 @@ public class GroupServiceImpl implements GroupService {
     public void delete(Long id) {
 
         Group doctor = groupRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("No Doctor with ID : " + id));
+                .orElseThrow(() -> new NotFoundException("No Student with ID : " + id));
         groupRepository.delete(doctor);
 
     }

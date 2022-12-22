@@ -2,7 +2,6 @@ package com.example.demo.rest;
 
 import com.example.demo.dto.ProtocolDto;
 import com.example.demo.model.Protocol;
-import com.example.demo.model.Student;
 import com.example.demo.service.ProtocolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,5 +34,14 @@ public class ProtocolRestControllerV1 {
     @GetMapping(value = "/protocols/")
     public ResponseEntity<List<Protocol>> getAll() {
         return ResponseEntity.ok(protocolService.getAll());
+    }
+    @PutMapping(value = "/newProtocol/{id}")
+    ResponseEntity<Protocol> updateProtocol(@PathVariable("id") Long id, @RequestBody ProtocolDto dto) {
+        return ResponseEntity.ok().body(protocolService.update(id, dto));
+    }
+    @DeleteMapping(value="/deleteProtocol/{id}")
+    ResponseEntity<Void> deleteProtocol( @PathVariable("id") Long id) {
+        protocolService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

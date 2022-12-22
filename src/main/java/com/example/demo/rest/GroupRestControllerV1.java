@@ -42,22 +42,22 @@ public class GroupRestControllerV1 {
     }
 
     @GetMapping(value = "/name/{name}")
-    public ResponseEntity<GroupDto> getByUsername(@PathVariable(name = "name") String name){
+    public ResponseEntity<GroupDto> getByUsername(@PathVariable(name = "name") String name) {
         Group group = groupService.findByName(name);
-        if (group == null){
+        if (group == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         GroupDto result = GroupDto.fromGroup(group);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @PutMapping(value="/newGroup/{id}")
+    @PutMapping(value = "/newGroup/{id}")
     ResponseEntity<Group> updateGroup(@PathVariable("id") Long id, @RequestBody GroupDto dto) {
         return ResponseEntity.ok().body(groupService.update(id, dto));
     }
 
-    @DeleteMapping(value="/deleteGroup/{id}")
-    ResponseEntity<Void> deleteDoctor( @PathVariable("id") Long id) {
+    @DeleteMapping(value = "/deleteGroup/{id}")
+    ResponseEntity<Void> deleteProtocol(@PathVariable("id") Long id) {
         groupService.delete(id);
         return ResponseEntity.noContent().build();
     }

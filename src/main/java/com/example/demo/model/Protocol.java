@@ -1,10 +1,8 @@
 package com.example.demo.model;
 
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import java.util.Date;
 
 
 @Entity
@@ -21,7 +19,7 @@ public class Protocol {
     private String hearing;
     @Column(name = "decided", nullable = false)
     private String decided;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fkGroupid")
     private Group group;
 }
